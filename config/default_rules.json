@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Age",
+        "pattern": "Age\\s*:\\s*([\\d.]+)",
+        "transform": "age_round"
+    },
+    {
+        "name": "Gender",
+        "pattern": "Gender\\s*:\\s*(\\w+)",
+        "transform": "gender_turkish"
+    },
+    {
+        "name": "Date of Test",
+        "pattern": "(?:Date of Test|Test Date|Date)\\s*:\\s*([\\d\\-\\/\\.]+)",
+        "transform": "none"
+    },
+    {
+        "name": "Clinician",
+        "pattern": "(?:Clinician|Doctor|Physician|Dr\\.)\\s*:?\\s*([A-Za-z\\s\\.]+)",
+        "transform": "none"
+    }
+]
