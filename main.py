@@ -26,12 +26,12 @@ def main():
         # Set application properties from config
         app.setApplicationName(app_config['app_title'])
         app.setApplicationVersion(app_config['version'])
-        app.setOrganizationName(app_config['organization'])
+        app.setOrganizationName(app_config.get('organization', 'Metanome'))
     except Exception:
         # Fallback values if config loading fails
         app.setApplicationName("Clinical Data Extractor")
         app.setApplicationVersion("1.0.0")
-        app.setOrganizationName("Hospital Data Systems")
+        app.setOrganizationName("Metanome")
     
     # Set application style
     app.setStyle('Fusion')

@@ -54,7 +54,7 @@ The application includes comprehensive dependency validation:
    - Script Location: `main.py`
    - Onefile: Yes (creates single executable)
    - Console Window: No (GUI application)
-   - Additional Files: Add `config` and `demo` folders
+   - Additional Files: Add `config` folder
 
 ## Deployment Strategies
 
@@ -127,9 +127,9 @@ The application includes comprehensive dependency validation:
 1. **Installation**: Extract to desired folder (e.g., `C:\ClinicalDataExtractor\`)
 2. **First Run**: Application will validate all dependencies
 3. **If Tesseract Missing**: Follow installation instructions in the warning dialog
-4. **Testing**: Use provided demo data to verify functionality
+4. **Testing**: Select your own files/folders to test extraction functionality
 
-## 🔧 Troubleshooting Executable Issues
+## Troubleshooting Executable Issues
 
 ### Common Problems and Solutions
 
@@ -153,7 +153,7 @@ The application includes comprehensive dependency validation:
    - Cause: Antivirus scanning large executable
    - Solution: Add executable to antivirus whitelist
 
-## 📋 Deployment Checklist
+## Deployment Checklist
 
 ### Before Creating Executable:
 - [ ] Run `python validate_system.py` successfully
@@ -176,7 +176,7 @@ The application includes comprehensive dependency validation:
 - [ ] Verify compatibility with hospital Excel versions
 - [ ] Prepare troubleshooting contacts
 
-## 📄 Version Information
+## Version Information
 
 When building executables, consider adding version information:
 
@@ -196,7 +196,7 @@ When building executables, consider adding version information:
        kids=[
            StringFileInfo([
                StringTable('040904B0', [
-                   StringStruct('CompanyName', 'Hospital Data Systems'),
+                   StringStruct('CompanyName', 'Metanome'),
                    StringStruct('FileDescription', 'Clinical Data Extractor'),
                    StringStruct('FileVersion', '1.0.0.0'),
                    StringStruct('ProductName', 'Clinical Data Extractor'),
@@ -210,7 +210,7 @@ When building executables, consider adding version information:
 
 2. **Reference in spec file**: Update `cde_app.spec` to include version information
 
-## 🎯 Cross-Platform Considerations
+## Cross-Platform Considerations
 
 ### Windows (Primary Target)
 - Use `.exe` extension
@@ -246,4 +246,4 @@ When building executables, consider adding version information:
 
 **Last Updated**: December 2024  
 **Version**: 1.0.0  
-**Contact**: Hospital Data Systems Team
+**Contact**: Metanome Development Team

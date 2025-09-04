@@ -27,16 +27,13 @@ if errorlevel 1 (
 )
 
 echo.
-echo Running system validation...
-python validate_system.py
+echo Checking PyInstaller installation...
+python -c "import PyInstaller" >nul 2>&1
 if errorlevel 1 (
-    echo.
-    echo WARNING: System validation found issues.
-    echo The executable may not work properly on target systems.
-    echo.
-    set /p continue="Do you want to continue anyway? (y/N): "
-    if /i not "!continue!"=="y" (
-        echo Build cancelled.
+    echo Installing PyInstaller...
+    pip install pyinstaller
+    if errorlevel 1 (
+        echo ERROR: Failed to install PyInstaller
         pause
         exit /b 1
     )
@@ -61,7 +58,6 @@ if exist "cde_app.spec" (
         --windowed ^
         --onefile ^
         --add-data "config;config" ^
-        --add-data "demo;demo" ^
         --hidden-import "PyQt6.QtCore" ^
         --hidden-import "PyQt6.QtGui" ^
         --hidden-import "PyQt6.QtWidgets" ^
@@ -69,6 +65,8 @@ if exist "cde_app.spec" (
         --hidden-import "fitz" ^
         --hidden-import "openpyxl" ^
         --hidden-import "pandas" ^
+        --hidden-import "PIL" ^
+        --hidden-import "regex" ^
         --clean
 )
 

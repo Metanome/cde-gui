@@ -36,9 +36,7 @@ cde-gui/
 ├── config/                     # Configuration files
 │   ├── app_config.json        # Application settings
 │   └── default_rules.json     # Default extraction rules
-├── demo/                      # Demo data for testing
 ├── main.py                    # Application entry point
-├── test_system.py            # System verification script
 └── requirements.txt          # Python dependencies
 ```
 
@@ -52,11 +50,6 @@ pip install -r requirements.txt
 ### Tesseract OCR Setup
 - **Windows**: Download from [UB Mannheim](https://github.com/UB-Mannheim/tesseract/wiki)
 - Add installation directory to system PATH
-
-### System Verification
-```bash
-python test_system.py
-```
 
 ### Application Launch
 ```bash
@@ -201,10 +194,7 @@ Excel output includes:
 
 ### System Diagnostics
 
-Execute diagnostic script for detailed system analysis:
-```bash
-python test_system.py
-```
+The application includes built-in diagnostic capabilities accessible through the Help menu to analyze system configuration and dependencies.
 
 ## Development
 
@@ -237,6 +227,6 @@ The application provides enterprise-grade features for healthcare environments:
 
 For technical assistance:
 1. Review application activity logs
-2. Execute system diagnostics: `python test_system.py`
+2. Use built-in system diagnostics via the Help menu
 3. Analyze console output for error details
 4. Verify file permissions and directory structure compliance

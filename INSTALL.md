@@ -51,17 +51,12 @@ If Tesseract is not in your system PATH, you may need to configure the path in t
 set TESSDATA_PREFIX=C:\Program Files\Tesseract-OCR\tessdata
 ```
 
-### Step 6: Test the Installation
-```bash
-python test_system.py
-```
-
-This will verify that all dependencies are properly installed and the system is ready.
-
-### Step 7: Run the Application
+### Step 6: Run the Application
 ```bash
 python main.py
 ```
+
+The application includes built-in system diagnostics that will automatically check dependencies on startup.
 
 ## Troubleshooting
 

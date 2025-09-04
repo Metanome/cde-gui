@@ -42,7 +42,7 @@ class ConfigManager:
         return {
             "app_title": "Clinical Data Extractor (CDE)",
             "version": "1.0.0",
-            "organization": "Hospital Data Systems",
+            "organization": "Metanome",
             "window_size": [1000, 700],
             "minimum_window_size": [800, 600],
             "settings_dialog_size": [800, 600],

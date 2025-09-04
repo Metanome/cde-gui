@@ -10,28 +10,33 @@ Usage:
 For cross-platform considerations:
 - Windows: Bundles all dependencies including DLLs
 - Include Tesseract separately or ensure it's installed on target systems
-- Config files and demo data are included in the bundle
+- Config files are included in the bundle
 """
 
 from PyInstaller.utils.hooks import collect_data_files, collect_submodules
 import os
+import sys
 
 # Application info
 app_name = 'Clinical_Data_Extractor'
 main_script = 'main.py'
 
+# Collect PyQt6 data files (for platform plugins, etc.)
+qt_data = collect_data_files('PyQt6')
+
 # Collect all data files
 datas = []
 
-# Add config files
-datas += [('config/*', 'config')]
+# Add Qt platform data
+datas += qt_data
 
-# Add demo data (optional)
-datas += [('demo/*', 'demo')]
+# Add config files (required)
+if os.path.exists('config'):
+    datas += [('config', 'config')]
 
-# Add any additional resource files
+# Add any additional resource files (optional, only if directory exists)
 if os.path.exists('resources'):
-    datas += [('resources/*', 'resources')]
+    datas += [('resources', 'resources')]
 
 # Hidden imports (modules that PyInstaller might miss)
 hiddenimports = [
@@ -42,8 +47,16 @@ hiddenimports = [
     'fitz',  # PyMuPDF
     'openpyxl',
     'pandas',
+    'numpy',
     'PIL',
     'regex',
+    # Qt platform plugins
+    'PyQt6.QtCore',
+    'PyQt6.QtGui',
+    'PyQt6.QtWidgets',
+    'PyQt6.sip',
+    'PyQt6.QtPrintSupport',
+    # Application modules
     'src.ui.main_window',
     'src.ui.settings_window',
     'src.core.text_extractor',
@@ -57,8 +70,7 @@ hiddenimports = [
 # Binaries to exclude (optional, to reduce size)
 excludes = [
     'tkinter',  # We're using PyQt6, not tkinter
-    'matplotlib',  # Not used
-    'numpy.random',  # Might not be needed
+    'matplotlib',  # Not used (if not needed)
 ]
 
 # Analysis
@@ -69,7 +81,11 @@ a = Analysis(
     datas=datas,
     hiddenimports=hiddenimports,
     hookspath=[],
-    hooksconfig={},
+    hooksconfig={
+        'PyQt6': {
+            'PyQt6.QtCore.QStandardPaths': ['plugins'],
+        }
+    },
     runtime_hooks=[],
     excludes=excludes,
     win_no_prefer_redirects=False,
@@ -81,26 +97,30 @@ a = Analysis(
 # Remove duplicate files
 pyz = PYZ(a.pure, a.zipped_data, cipher=None)
 
-# Executable
+# Executable - Using onedir for better performance
 exe = EXE(
     pyz,
     a.scripts,
-    a.binaries,
-    a.zipfiles,
-    a.datas,
-    [],
+    [],  # Empty - we're using onedir mode
+    exclude_binaries=True,  # For onedir mode
     name=app_name,
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
-    upx=True,  # Compress executable (optional)
-    upx_exclude=[],
-    runtime_tmpdir=None,
-    console=False,  # Set to True if you want console window for debugging
+    upx=False,  # Disable UPX for stability
+    console=False,  # Disable console for clean deployment
     disable_windowed_traceback=False,
-    target_arch=None,
-    codesign_identity=None,
-    entitlements_file=None,
     icon='resources/app_icon.ico' if os.path.exists('resources/app_icon.ico') else None,
-    version='version_info.txt' if os.path.exists('version_info.txt') else None
+)
+
+# Create directory distribution for better performance
+coll = COLLECT(
+    exe,
+    a.binaries,
+    a.zipfiles,
+    a.datas,
+    strip=False,
+    upx=False,
+    upx_exclude=[],
+    name=app_name,
 )

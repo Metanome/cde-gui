@@ -224,11 +224,30 @@ class PatternTestDialog(QDialog):
         # Use default size for pattern test dialog
         self.resize(600, 400)
         
+        # Apply consistent dark theme to dialog
+        self.setStyleSheet("""
+            QDialog {
+                background-color: #1e1e1e;
+                color: #ffffff;
+            }
+            QLabel {
+                color: #ffffff;
+                font-size: 12px;
+            }
+        """)
+        
         layout = QVBoxLayout(self)
         
         # Pattern display
         pattern_label = QLabel(f"Pattern: {self.pattern}")
-        pattern_label.setStyleSheet("font-weight: bold; padding: 5px;")
+        pattern_label.setStyleSheet("""
+            font-weight: bold; 
+            padding: 8px;
+            background-color: #333333;
+            border: 1px solid #555555;
+            border-radius: 4px;
+            color: #ffffff;
+        """)
         layout.addWidget(pattern_label)
         
         # Test text input
@@ -236,23 +255,64 @@ class PatternTestDialog(QDialog):
         self.test_text = QTextEdit()
         self.test_text.setPlaceholderText("Enter sample text to test the pattern against...")
         self.test_text.setMaximumHeight(150)
+        self.test_text.setStyleSheet("""
+            background-color: #2a2a2a;
+            color: #ffffff;
+            border: 1px solid #555555;
+            border-radius: 4px;
+            padding: 5px;
+            font-family: Consolas, monospace;
+        """)
         layout.addWidget(self.test_text)
         
         # Test button
         test_btn = QPushButton("Test Pattern")
         test_btn.clicked.connect(self.run_test)
+        test_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #3498db;
+                color: white;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 4px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                background-color: #2980b9;
+            }
+        """)
         layout.addWidget(test_btn)
         
         # Results
         layout.addWidget(QLabel("Results:"))
         self.results_text = QTextEdit()
         self.results_text.setReadOnly(True)
-        self.results_text.setStyleSheet("background-color: #f8f9fa; font-family: Consolas, monospace;")
+        self.results_text.setStyleSheet("""
+            background-color: #1a1a1a;
+            color: #ffffff;
+            border: 1px solid #444444;
+            border-radius: 4px;
+            padding: 5px;
+            font-family: Consolas, monospace;
+        """)
         layout.addWidget(self.results_text)
         
         # Close button
         close_btn = QPushButton("Close")
         close_btn.clicked.connect(self.close)
+        close_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #666666;
+                color: white;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 4px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                background-color: #555555;
+            }
+        """)
         layout.addWidget(close_btn)
     
     def run_test(self):
@@ -281,6 +341,30 @@ class PatternTestDialog(QDialog):
             
         except re.error as e:
             self.results_text.setPlainText(f"Regex error: {str(e)}")
+    
+    def _get_button_style(self, color: str, font_size: int = 12) -> str:
+        """Get consistent button styling."""
+        return f"""
+            QPushButton {{
+                background-color: {color};
+                color: white;
+                border: none;
+                padding: 10px;
+                border-radius: 6px;
+                font-weight: bold;
+                font-size: {font_size}px;
+            }}
+            QPushButton:hover {{
+                background-color: {color}dd;
+            }}
+            QPushButton:pressed {{
+                background-color: {color}bb;
+            }}
+            QPushButton:disabled {{
+                background-color: #bdc3c7;
+                color: #7f8c8d;
+            }}
+        """
 
 
 class SettingsWindow(QDialog):
@@ -299,7 +383,7 @@ class SettingsWindow(QDialog):
         self.setModal(True)
         
         # Get app config for window sizing
-        app_config = self.config_manager.get_app_config()
+        app_config = self.config_manager.load_app_config()
         dialog_size = app_config.get('settings_dialog_size', [800, 600])
         self.resize(*dialog_size)
         
