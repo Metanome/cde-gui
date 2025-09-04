@@ -108,6 +108,6 @@ You can modify these files directly or use the built-in settings interface.
 
 For issues or questions:
 1. Check the Activity Log in the application
-2. Run the test script to verify installation
+2. Use built-in system diagnostics via the Help menu
 3. Review the console output for error messages
 4. Ensure all file paths and permissions are correct

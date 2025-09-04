@@ -103,7 +103,7 @@ The application includes comprehensive dependency validation:
 2. **Production Deployment**:
    ```
    Option A: MSI Installer Package
-   - Include executable + Tesseract + sample data
+   - Include executable + Tesseract
    - Silent installation capability
    - Add to software deployment tools
    
@@ -117,7 +117,6 @@ The application includes comprehensive dependency validation:
    ```
    Include:
    - User manual with screenshots
-   - Sample data for practice
    - Troubleshooting guide
    - Contact information for IT support
    ```
@@ -156,8 +155,7 @@ The application includes comprehensive dependency validation:
 ## Deployment Checklist
 
 ### Before Creating Executable:
-- [ ] Run `python validate_system.py` successfully
-- [ ] Test application with sample data
+- [ ] Test application functionality with your own data
 - [ ] Verify all extraction rules work correctly
 - [ ] Test Turkish character support
 - [ ] Confirm Excel output format
@@ -228,7 +226,7 @@ When building executables, consider adding version information:
 - Handle different distributions
 - Consider dependency variations
 
-## 📞 Support and Maintenance
+## Support and Maintenance
 
 ### For Hospital IT Teams:
 1. **Update Process**: How to deploy new versions
@@ -244,6 +242,6 @@ When building executables, consider adding version information:
 
 ---
 
-**Last Updated**: December 2024  
+**Last Updated**: September 2025  
 **Version**: 1.0.0  
-**Contact**: Metanome Development Team
+**Contact**: Metanome
