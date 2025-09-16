@@ -17,6 +17,13 @@ A comprehensive solution for healthcare organizations to automate data extractio
 - **Concurrent Processing** - Multi-threaded extraction for enhanced performance
 - **File Structure Navigation** - Automated handling of nested directory structures
 
+## Screenshots
+| Main Interface | Manage Rule Creation |
+| :---: | :---: |
+| <img src="https://github.com/user-attachments/assets/5c011d28-62ad-4885-8853-b382bf8b1f37" alt="Screenshot1" width="400"/> | <img src="https://github.com/user-attachments/assets/6ddf506f-916e-44c2-8b48-66e59e3e85b7" alt="Screenshot2" width="400"/> |
+| **Edit Rule Creation** | **Test Rule Creation** |
+| <img src="https://github.com/user-attachments/assets/c0b232d4-0c4e-4818-a7c4-3788a41cdd4b" alt="Screenshot3" width="300"/> | <img src="https://github.com/user-attachments/assets/f0064a77-6fd2-474d-8fee-c83bfc9d8883" alt="Screenshot4" width="350"/> |
+
 ## Project Structure
 
 ```
@@ -192,10 +199,6 @@ Excel output includes:
    - Adjust Tesseract configuration parameters
    - Consider image preprocessing for optimization
 
-### System Diagnostics
-
-The application includes built-in diagnostic capabilities accessible through the Help menu to analyze system configuration and dependencies.
-
 ## Development
 
 ### Technical Requirements
@@ -207,10 +210,6 @@ The application includes built-in diagnostic capabilities accessible through the
 - openpyxl
 - pandas
 - Pillow
-
-## License
-
-This project is licensed under the GPL-3.0 License.
 
 ## Healthcare Integration
 
@@ -227,6 +226,5 @@ The application provides enterprise-grade features for healthcare environments:
 
 For technical assistance:
 1. Review application activity logs
-2. Use built-in system diagnostics via the Help menu
-3. Analyze console output for error details
-4. Verify file permissions and directory structure compliance
+2. Analyze console output for error details
+3. Verify file permissions and directory structure compliance
